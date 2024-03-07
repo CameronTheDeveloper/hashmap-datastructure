@@ -1,1 +1,1 @@
-# Hashmap Data Structure
+# HashMap Data Structure
