@@ -20,6 +20,17 @@ const createHashMap = (bucketSize = 16) => {
         bucketsAr[bucketKey] = node;
     };
 
+    const has = (key) => {
+        const bucketKey = hash(key);
+        const node = bucketsAr[bucketKey];
+
+        if (node) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     const get = (key) => {
         const bucketKey = hash(key);
         const node = bucketsAr[bucketKey];
@@ -31,7 +42,7 @@ const createHashMap = (bucketSize = 16) => {
         }
     };
 
-    return { set, get };
+    return { set, get, has };
 };
 
 export { createHashMap };
