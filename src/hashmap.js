@@ -1,7 +1,7 @@
-const createHashMap = (bucketSize = 16) => {
+const createHashMap = (bucketsSize = 16) => {
 
     let bucketsAr = [];
-    bucketsAr.size = bucketSize;
+    bucketsAr.length = bucketsSize;
 
     const hash = (key) => {
         let hashCode = 0;
