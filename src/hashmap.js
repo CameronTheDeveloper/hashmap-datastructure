@@ -64,7 +64,7 @@ const createHashMap = (bucketsSize = 16) => {
 
         const node = bucketsAr[bucketKey];
         if (node) {
-            bucketsAr[bucketKey] = undefined;
+            bucketsAr[bucketKey] = {};
             return true;
         } else {
             return false;
