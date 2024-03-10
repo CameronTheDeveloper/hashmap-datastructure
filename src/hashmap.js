@@ -55,7 +55,6 @@ const createHashMap = (bucketsSize = 16) => {
 
     const remove = (key) => {
         const bucketKey = hash(key);
-        const tempSize = bucketsAr.length;
 
         if (bucketKey < 0 || bucketKey >= bucketsAr.length) {
             throw new Error("Trying to access index out of bound");
@@ -63,8 +62,7 @@ const createHashMap = (bucketsSize = 16) => {
 
         const node = bucketsAr[bucketKey];
         if (node) {
-            bucketsAr.splice(bucketKey, 1);
-            bucketsAr.length = tempSize;
+            bucketsAr[bucketKey] = undefined;
             return true;
         } else {
             return false;
