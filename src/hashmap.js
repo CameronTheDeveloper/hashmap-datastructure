@@ -8,7 +8,7 @@ const createHashMap = (bucketSize = 16) => {
         const primeNum = 31;
 
         for (let i = 0; i < key.length; i++) {
-            hashCode = primeNum * hashCode + key.charCodeAt(i);
+            hashCode = (primeNum * hashCode + key.charCodeAt(i)) % 16;
         }
 
         return hashCode;
