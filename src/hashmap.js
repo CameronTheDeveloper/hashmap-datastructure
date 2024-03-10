@@ -80,7 +80,15 @@ const createHashMap = (bucketsSize = 16) => {
         return bucketsAr.filter((index) => index);
     };
 
-    return { set, get, has, remove, clear, entries };
+    const keys = () => {
+        let keysAr = [];
+        bucketsAr.forEach((index) => {
+            index.key && keysAr.push(index.key);
+        });
+        return keysAr;
+    };
+
+    return { set, get, has, remove, clear, entries, keys };
 };
 
 export { createHashMap };
