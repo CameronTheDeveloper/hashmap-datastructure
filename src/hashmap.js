@@ -88,7 +88,15 @@ const createHashMap = (bucketsSize = 16) => {
         return keysAr;
     };
 
-    return { set, get, has, remove, clear, entries, keys };
+    const values = () => {
+        let valuesAr = [];
+        bucketsAr.forEach((index) => {
+            index.value && valuesAr.push(index.value);
+        });
+        return valuesAr;
+    };
+
+    return { set, get, has, remove, clear, entries, keys, values };
 };
 
 export { createHashMap };
