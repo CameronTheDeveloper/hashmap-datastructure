@@ -15,14 +15,14 @@ const createHashMap = (bucketSize = 16) => {
     };
 
     const set = (key, value) => {
-        const nodeKey = hash(key);
+        const bucketKey = hash(key);
         const node = { key: key, value: value };
-        bucketsAr[nodeKey] = node;
+        bucketsAr[bucketKey] = node;
     };
 
     const get = (key) => {
-        const nodeKey = hash(key);
-        const node = bucketsAr[nodeKey];
+        const bucketKey = hash(key);
+        const node = bucketsAr[bucketKey];
 
         if (node) {
             return node.value;
