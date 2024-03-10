@@ -71,7 +71,12 @@ const createHashMap = (bucketsSize = 16) => {
         }
     };
 
-    return { set, get, has, remove };
+    const clear = () => {
+        bucketsAr = [];
+        bucketsAr.length = 16;
+    };
+
+    return { set, get, has, remove, clear };
 };
 
 export { createHashMap };
