@@ -76,7 +76,11 @@ const createHashMap = (bucketsSize = 16) => {
         bucketsAr.length = 16;
     };
 
-    return { set, get, has, remove, clear };
+    const entries = () => {
+        return bucketsAr.filter((index) => index);
+    };
+
+    return { set, get, has, remove, clear, entries };
 };
 
 export { createHashMap };
