@@ -96,7 +96,12 @@ const createHashMap = (bucketsSize = 16) => {
         return valuesAr;
     };
 
-    return { set, get, has, remove, clear, entries, keys, values };
+    const length = () => {
+        const keysAr = keys();
+        return keysAr.length;
+    };
+
+    return { set, get, has, remove, clear, entries, keys, values, length };
 };
 
 export { createHashMap };
