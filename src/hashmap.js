@@ -14,9 +14,11 @@ const createHashMap = (bucketsSize = 16) => {
         return hashCode;
     };
 
+    const isOutOfBounds = (key) => key < 0 || key >= bucketsAr.length;
+
     const set = (key, value) => {
         const bucketKey = hash(key);
-        if (bucketKey < 0 || bucketKey >= bucketsAr.length) {
+        if (isOutOfBounds(bucketKey)) {
             throw new Error("Trying to access index out of bound");
         }
 
@@ -26,7 +28,7 @@ const createHashMap = (bucketsSize = 16) => {
 
     const has = (key) => {
         const bucketKey = hash(key);
-        if (bucketKey < 0 || bucketKey >= bucketsAr.length) {
+        if (isOutOfBounds(bucketKey)) {
             throw new Error("Trying to access index out of bound");
         }
 
@@ -41,7 +43,7 @@ const createHashMap = (bucketsSize = 16) => {
     const get = (key) => {
         const bucketKey = hash(key);
 
-        if (bucketKey < 0 || bucketKey >= bucketsAr.length) {
+        if (isOutOfBounds(bucketKey)) {
             throw new Error("Trying to access index out of bound");
         }
 
@@ -56,7 +58,7 @@ const createHashMap = (bucketsSize = 16) => {
     const remove = (key) => {
         const bucketKey = hash(key);
 
-        if (bucketKey < 0 || bucketKey >= bucketsAr.length) {
+        if (isOutOfBounds(bucketKey)) {
             throw new Error("Trying to access index out of bound");
         }
 
