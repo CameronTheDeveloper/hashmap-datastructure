@@ -92,8 +92,8 @@ const HashMap = (bucketsSize = 16) => {
 
     const values = () => {
         let valuesAr = [];
-        bucketsAr.forEach((index) => {
-            index.value && valuesAr.push(index.value);
+        bucketsAr.forEach((bucket) => {
+            bucket && bucket.getValues(valuesAr);
         });
         return valuesAr;
     };
