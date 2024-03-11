@@ -24,6 +24,29 @@ const bucketLinkedList = () => {
             newHead.next = this.head;
             this.head = newHead;
             this.size++;
+        },
+
+        removeNode(key) {
+            let current = this.head;
+            let nextNode = current.next;
+
+            if (current.key === key) {
+                this.head = current.next;
+                current = null;
+                return;
+            }
+
+            while (nextNode && nextNode.key !== key) {
+                current = current.next;
+                nextNode = current.next;
+            }
+
+            if (nextNode && nextNode.key === key) {
+                current.next = nextNode.next;
+                nextNode = null;
+            } else {
+                throw new Error('Key not found in bucket');
+            }
         }
 
     };
