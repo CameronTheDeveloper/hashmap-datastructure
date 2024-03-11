@@ -95,7 +95,10 @@ const createHashMap = (bucketsSize = 16) => {
     const bucketsArIsTooSmall = () => bucketsAr.length * loadFactor < capacity;
 
     const growBucketsAr = () => {
-        bucketsAr.length *= 2;
+        let tempAr = [];
+        tempAr.length = bucketsAr.length;
+        tempAr.push(...bucketsAr);
+        bucketsAr = tempAr;
     };
 
     const set = (key, value) => {
