@@ -52,4 +52,4 @@ const BucketLinkedList = () => {
     };
 };
 
-export { BucketLinkedList as bucketLinkedList };
+export { BucketLinkedList };
