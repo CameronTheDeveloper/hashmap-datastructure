@@ -56,10 +56,10 @@ const HashMap = (bucketsSize = 16) => {
             throw new Error("Trying to access index out of bound");
         }
 
-        const node = bucketsAr[bucketKey];
-        if (node) {
+        const bucket = bucketsAr[bucketKey];
+        if (bucket) {
+            bucket.removeNode(key);
             capacity--;
-            bucketsAr[bucketKey] = {};
             return true;
         } else {
             return false;
