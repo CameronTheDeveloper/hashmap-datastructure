@@ -26,6 +26,20 @@ const BucketLinkedList = () => {
             this.size++;
         },
 
+        hasNode(key) {
+            let current = this.head;
+            let nodeFound = false;
+            while (current) {
+                if (current.key === key) {
+                    nodeFound = true;
+                    return nodeFound;
+                } else {
+                    current = current.next;
+                }
+            }
+            return nodeFound;
+        },
+
         removeNode(key) {
             let current = this.head;
             let nextNode = current.next;
@@ -71,7 +85,7 @@ const BucketLinkedList = () => {
                 valuesAr.push(current.value);
                 current = current.next;
             }
-        }
+        },
     };
 };
 
