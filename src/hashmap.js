@@ -75,7 +75,11 @@ const HashMap = (bucketsSize = 16) => {
     };
 
     const entries = () => {
-        return bucketsAr.filter((index) => index);
+        let entriesAr = [];
+        bucketsAr.forEach((bucket) => {
+            bucket && bucket.getEntries(entriesAr);
+        });
+        return entriesAr;
     };
 
     const keys = () => {
