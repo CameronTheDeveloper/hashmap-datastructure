@@ -1,3 +1,5 @@
+import { BucketLinkedList } from "./bucket-linked-list.js";
+
 const HashMap = (bucketsSize = 16) => {
 
     let bucketsAr = [];
@@ -112,9 +114,10 @@ const HashMap = (bucketsSize = 16) => {
             throw new Error("Trying to access index out of bound");
         }
 
-        const node = { key: key, value: value };
+        const bucket = BucketLinkedList();
+        bucket.append(key, value);
         capacity++;
-        bucketsAr[bucketKey] = node;
+        bucketsAr[bucketKey] = bucket;
     };
 
     return { get, has, remove, clear, entries, keys, values, length, set };
