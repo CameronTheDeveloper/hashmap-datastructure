@@ -114,10 +114,14 @@ const HashMap = (bucketsSize = 16) => {
             throw new Error("Trying to access index out of bound");
         }
 
-        const bucket = BucketLinkedList();
-        bucket.append(key, value);
-        capacity++;
-        bucketsAr[bucketKey] = bucket;
+        if (bucketsAr[bucketKey]) {
+            bucketsAr[bucketKey].append(key, value);
+        } else {
+            const bucket = BucketLinkedList();
+            bucket.append(key, value);
+            capacity++;
+            bucketsAr[bucketKey] = bucket;
+        }
     };
 
     return { get, has, remove, clear, entries, keys, values, length, set };
