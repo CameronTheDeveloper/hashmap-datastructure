@@ -26,18 +26,14 @@ const BucketLinkedList = () => {
             this.size++;
         },
 
-        hasNode(key) {
-            let current = this.head;
-            let nodeFound = false;
-            while (current) {
-                if (current.key === key) {
-                    nodeFound = true;
-                    return nodeFound;
-                } else {
-                    current = current.next;
-                }
+        hasNode(key, current = this.head) {
+            if (!current) {
+                return false;
             }
-            return nodeFound;
+            if (current.key === key) {
+                return true;
+            }
+            return this.hasNode(key, current = current.next);
         },
 
         removeNode(key) {
