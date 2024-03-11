@@ -1,4 +1,4 @@
-import { MapNode } from "./map-node";
+import { MapNode } from "./map-node.js";
 
 const BucketLinkedList = () => {
     return {
