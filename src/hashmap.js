@@ -25,13 +25,11 @@ const HashMap = (bucketsSize = 16) => {
         if (isOutOfBounds(bucketKey)) {
             throw new Error("Trying to access index out of bound");
         }
-
-        const node = bucketsAr[bucketKey];
-        if (node) {
-            return true;
-        } else {
+        const bucket = bucketsAr[bucketKey];
+        if (!bucket) {
             return false;
         }
+        return bucket.hasNode(key);
     };
 
     const get = (key) => {
