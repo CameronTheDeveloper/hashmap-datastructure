@@ -1,6 +1,8 @@
 const createHashMap = (bucketsSize = 16) => {
 
     let bucketsAr = [];
+    let capacity = 0;
+    let loadFactor = 0.75;
     bucketsAr.length = bucketsSize;
 
     const hash = (key) => {
@@ -8,23 +10,13 @@ const createHashMap = (bucketsSize = 16) => {
         const primeNum = 31;
 
         for (let i = 0; i < key.length; i++) {
-            hashCode = (primeNum * hashCode + key.charCodeAt(i)) % 16;
+            hashCode = (primeNum * hashCode + key.charCodeAt(i)) % bucketsAr.length;
         }
 
         return hashCode;
     };
 
     const isOutOfBounds = (key) => key < 0 || key >= bucketsAr.length;
-
-    const set = (key, value) => {
-        const bucketKey = hash(key);
-        if (isOutOfBounds(bucketKey)) {
-            throw new Error("Trying to access index out of bound");
-        }
-
-        const node = { key: key, value: value };
-        bucketsAr[bucketKey] = node;
-    };
 
     const has = (key) => {
         const bucketKey = hash(key);
@@ -64,6 +56,7 @@ const createHashMap = (bucketsSize = 16) => {
 
         const node = bucketsAr[bucketKey];
         if (node) {
+            capacity--;
             bucketsAr[bucketKey] = {};
             return true;
         } else {
@@ -101,7 +94,29 @@ const createHashMap = (bucketsSize = 16) => {
         return keysAr.length;
     };
 
-    return { set, get, has, remove, clear, entries, keys, values, length };
+    const bucketsArIsTooSmall = () => bucketsAr.length * loadFactor < capacity;
+
+    const growBucketsAr = () => {
+        bucketsAr.length *= 2;
+    };
+
+    const set = (key, value) => {
+
+        if (bucketsArIsTooSmall) {
+            growBucketsAr();
+        }
+
+        const bucketKey = hash(key);
+        if (isOutOfBounds(bucketKey)) {
+            throw new Error("Trying to access index out of bound");
+        }
+
+        const node = { key: key, value: value };
+        capacity++;
+        bucketsAr[bucketKey] = node;
+    };
+
+    return { get, has, remove, clear, entries, keys, values, length, set };
 };
 
 export { createHashMap };
