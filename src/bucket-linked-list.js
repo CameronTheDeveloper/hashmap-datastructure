@@ -1,13 +1,13 @@
-import { mapNode } from "./map-node";
+import { MapNode } from "./map-node";
 
-const bucketLinkedList = () => {
+const BucketLinkedList = () => {
     return {
         head: null,
         tail: null,
         size: 0,
 
         append(key, value) {
-            const newNode = mapNode(key, value);
+            const newNode = MapNode(key, value);
 
             if (this.size < 1) {
                 this.head = newNode;
@@ -20,7 +20,7 @@ const bucketLinkedList = () => {
         },
 
         prepend(key, value) {
-            const newHead = mapNode(key, value);
+            const newHead = MapNode(key, value);
             newHead.next = this.head;
             this.head = newHead;
             this.size++;
@@ -52,4 +52,4 @@ const bucketLinkedList = () => {
     };
 };
 
-export { bucketLinkedList };
+export { BucketLinkedList as bucketLinkedList };

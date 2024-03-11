@@ -1,4 +1,4 @@
-const mapNode = (key, value) => {
+const MapNode = (key, value) => {
     return {
         key: key,
         value: value,
@@ -6,4 +6,4 @@ const mapNode = (key, value) => {
     };
 };
 
-export { mapNode };
+export { MapNode };
