@@ -67,6 +67,7 @@ const createHashMap = (bucketsSize = 16) => {
     const clear = () => {
         bucketsAr = [];
         bucketsAr.length = 16;
+        capacity = 0;
     };
 
     const entries = () => {
