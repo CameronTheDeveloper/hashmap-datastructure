@@ -57,13 +57,15 @@ const HashMap = (bucketsSize = 16) => {
         }
 
         const bucket = bucketsAr[bucketKey];
-        if (bucket) {
-            bucket.removeNode(key);
+        if (bucket && bucket.size <= 1) {
+            bucketsAr[bucketKey] = undefined;
             capacity--;
-            return true;
+        } else if (bucket && bucket.size > 1) {
+            bucket.removeNode(key);
         } else {
             return false;
         }
+        return true;
     };
 
     const clear = () => {
