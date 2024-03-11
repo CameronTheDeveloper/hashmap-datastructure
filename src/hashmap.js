@@ -1,4 +1,4 @@
-const createHashMap = (bucketsSize = 16) => {
+const HashMap = (bucketsSize = 16) => {
 
     let bucketsAr = [];
     let capacity = 0;
@@ -120,4 +120,4 @@ const createHashMap = (bucketsSize = 16) => {
     return { get, has, remove, clear, entries, keys, values, length, set };
 };
 
-export { createHashMap };
+export { HashMap };
