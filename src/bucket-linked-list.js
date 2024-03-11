@@ -47,6 +47,14 @@ const BucketLinkedList = () => {
             } else {
                 throw new Error('Key not found in bucket');
             }
+        },
+
+        getKeys(keysAr) {
+            let current = this.head;
+            while (current) {
+                keysAr.push(current.key);
+                current = current.next;
+            }
         }
 
     };
