@@ -49,6 +49,14 @@ const BucketLinkedList = () => {
             }
         },
 
+        getEntries(entriesAr) {
+            let current = this.head;
+            while (current) {
+                entriesAr.push({ key: current.key, value: current.value });
+                current = current.next;
+            }
+        },
+
         getKeys(keysAr) {
             let current = this.head;
             while (current) {
