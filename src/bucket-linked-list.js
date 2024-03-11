@@ -17,7 +17,15 @@ const bucketLinkedList = () => {
                 this.tail = newNode;
             }
             this.size++;
+        },
+
+        prepend(key, value) {
+            const newHead = mapNode(key, value);
+            newHead.next = this.head;
+            this.head = newHead;
+            this.size++;
         }
+
     };
 };
 
