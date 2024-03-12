@@ -36,6 +36,16 @@ const BucketLinkedList = () => {
             return this.hasNode(key, current = current.next);
         },
 
+        getNode(key, current = this.head) {
+            if (!current) {
+                return null;
+            }
+            if (current.key === key) {
+                return current.value;
+            }
+            return this.getNode(key, current = current.next);
+        },
+
         removeNode(key) {
             let current = this.head;
             let nextNode = current.next;
