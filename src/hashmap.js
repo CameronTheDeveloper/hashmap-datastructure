@@ -34,17 +34,14 @@ const HashMap = (bucketsSize = 16) => {
 
     const get = (key) => {
         const bucketKey = hash(key);
-
         if (isOutOfBounds(bucketKey)) {
             throw new Error("Trying to access index out of bound");
         }
-
-        const node = bucketsAr[bucketKey];
-        if (node) {
-            return node.value;
-        } else {
+        const bucket = bucketsAr[bucketKey];
+        if (!bucket) {
             return null;
         }
+        return bucket.getNode(key);
     };
 
     const remove = (key) => {
