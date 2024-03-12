@@ -99,19 +99,25 @@ const HashMap = (bucketsSize = 16) => {
     };
 
     const set = (key, value) => {
+        const bucketKey = hash(key);
+        let bucket = bucketsAr[bucketKey];
 
         if (bucketsArIsTooSmall()) {
             growBucketsAr();
         }
 
-        const bucketKey = hash(key);
-        if (bucketsAr[bucketKey]) {
-            bucketsAr[bucketKey].append(key, value);
-        } else {
-            const bucket = BucketLinkedList();
+        if (!bucket) {
+            bucket = BucketLinkedList();
             bucket.append(key, value);
             capacity++;
             bucketsAr[bucketKey] = bucket;
+        } else if (bucket) {
+            let node = bucket.getNode(key);
+            if (node) {
+                node.value = value;
+            } else {
+                bucket.append(key, value);
+            }
         }
     };
 
