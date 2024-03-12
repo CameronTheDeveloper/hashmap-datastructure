@@ -36,7 +36,11 @@ const HashMap = (bucketsSize = 16) => {
         if (!bucket) {
             return null;
         }
-        return bucket.getNode(key);
+        const node = bucket.getNode(key);
+        if (node) {
+            return node.value;
+        }
+        return null;
     };
 
     const remove = (key) => {
@@ -101,7 +105,6 @@ const HashMap = (bucketsSize = 16) => {
         }
 
         const bucketKey = hash(key);
-
         if (bucketsAr[bucketKey]) {
             bucketsAr[bucketKey].append(key, value);
         } else {

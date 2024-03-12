@@ -41,7 +41,7 @@ const BucketLinkedList = () => {
                 return null;
             }
             if (current.key === key) {
-                return current.value;
+                return current;
             }
             return this.getNode(key, current.next);
         },
