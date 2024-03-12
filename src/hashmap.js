@@ -7,24 +7,22 @@ const HashMap = (bucketsSize = 16) => {
     let loadFactor = 0.75;
     bucketsAr.length = bucketsSize;
 
+    const isOutOfBounds = (key) => key < 0 || key >= bucketsAr.length;
+
     const hash = (key) => {
         let hashCode = 0;
         const primeNum = 31;
-
         for (let i = 0; i < key.length; i++) {
             hashCode = (primeNum * hashCode + key.charCodeAt(i)) % bucketsAr.length;
         }
-
+        if (isOutOfBounds(hashCode)) {
+            throw new Error("Trying to access index out of bound");
+        }
         return hashCode;
     };
 
-    const isOutOfBounds = (key) => key < 0 || key >= bucketsAr.length;
-
     const has = (key) => {
         const bucketKey = hash(key);
-        if (isOutOfBounds(bucketKey)) {
-            throw new Error("Trying to access index out of bound");
-        }
         const bucket = bucketsAr[bucketKey];
         if (!bucket) {
             return false;
@@ -34,9 +32,6 @@ const HashMap = (bucketsSize = 16) => {
 
     const get = (key) => {
         const bucketKey = hash(key);
-        if (isOutOfBounds(bucketKey)) {
-            throw new Error("Trying to access index out of bound");
-        }
         const bucket = bucketsAr[bucketKey];
         if (!bucket) {
             return null;
@@ -46,11 +41,6 @@ const HashMap = (bucketsSize = 16) => {
 
     const remove = (key) => {
         const bucketKey = hash(key);
-
-        if (isOutOfBounds(bucketKey)) {
-            throw new Error("Trying to access index out of bound");
-        }
-
         const bucket = bucketsAr[bucketKey];
         if (bucket && bucket.size <= 1) {
             bucketsAr[bucketKey] = undefined;
@@ -111,9 +101,6 @@ const HashMap = (bucketsSize = 16) => {
         }
 
         const bucketKey = hash(key);
-        if (isOutOfBounds(bucketKey)) {
-            throw new Error("Trying to access index out of bound");
-        }
 
         if (bucketsAr[bucketKey]) {
             bucketsAr[bucketKey].append(key, value);
