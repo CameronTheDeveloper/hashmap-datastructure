@@ -33,7 +33,7 @@ const BucketLinkedList = () => {
             if (current.key === key) {
                 return true;
             }
-            return this.hasNode(key, current = current.next);
+            return this.hasNode(key, current.next);
         },
 
         getNode(key, current = this.head) {
@@ -43,7 +43,7 @@ const BucketLinkedList = () => {
             if (current.key === key) {
                 return current.value;
             }
-            return this.getNode(key, current = current.next);
+            return this.getNode(key, current.next);
         },
 
         removeNode(key) {
